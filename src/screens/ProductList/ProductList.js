@@ -1,36 +1,36 @@
-import React, {useState,useEffect} from 'react';
-import axios from 'axios';
+import React, {useEffect, useState} from 'react';
+import {Loading, Error} from '../../components';
 import styles from './ProductList.styles';
 import {SafeAreaView, View, FlatList} from 'react-native';
 import {SearchBar, ProductItem} from '../../components';
+import {useFetch} from '../../hooks/useFetch';
 
 function ProductList(props) {
 
     const api_url = 'https://fakestoreapi.com/products';
 
+    const {data, loading, error} = useFetch(api_url, {});
+
     const [productList, setProductList] = useState([]);
 
     useEffect(() => {
-      fetchProductData();
-    }, []);
+      setProductList(data);
+    }, [data]);
 
-    function fetchProductData() {
-      axios
-        .get(api_url)
-        .then((response) => {
-          setProductList(response.data)
-        });
-    }
+    // if (loading) {
+    //   return <Loading />;
+    // }
+  
+    // if (error) {
+    //   return <Error />;
+    // }
 
     function searchProduct(searchedField) {
 
-      axios.get(api_url)
-        .then((response) => {
-          setProductList(response.data.products.filter(x=> {
-            x.strProduct.toLowerCase()
+          setProductList(productList.filter(x=> {
+            x.title.toLowerCase()
             .includes(searchedField.toLowerCase())
           }));
-        });
 
     }
 

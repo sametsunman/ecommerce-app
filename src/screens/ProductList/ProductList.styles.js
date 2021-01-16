@@ -4,7 +4,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  title: {
+  item: {
+    flex: 0.5,
+    width: '50%'
   }
 });
 

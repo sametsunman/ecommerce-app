@@ -13,15 +13,19 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-end',
     },
     title: {
+      flex:8,
       fontWeight: 'bold',
       fontSize: 30,
+    },
+    like: {
+      flex: 1
     },
     price: {
       fontWeight: 'bold',
       fontSize: 20,
       marginLeft: 5
     },
-    ingredients:{
+    instructions:{
       margin:5
     },
     detail: {
