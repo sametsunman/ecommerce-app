@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
+import {useStorage} from './../../hooks/useStorage';
 import {SafeAreaView, View, Text, ImageBackground} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useFetch} from '../../hooks/useFetch';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import styles from './ProductDetails.styles';
 
 function ProductDetails({route}) {
@@ -12,6 +13,8 @@ function ProductDetails({route}) {
   const {data, loading, error} = useFetch(api_url, {});
 
   const dispatch = useDispatch();
+
+  const storage = useSelector((state) => state);
 
   const [productDetail, setProductDetail] = useState(null);
 
@@ -30,7 +33,16 @@ function ProductDetails({route}) {
     // }
 
   const onLike = () => {
-    dispatch({type: 'ADD_TO_FAVORITES', payload: productDetail});
+    if(storage && storage.favorites.find(x=>x.id===productDetail.id))
+    {
+      dispatch({type: 'REMOVE_FROM_FAVORITES', payload: productDetail});
+      alert("Removed from favorites!");
+    }
+    else{
+      dispatch({type: 'ADD_TO_FAVORITES', payload: productDetail});
+      alert("Added to favorites!");
+    }
+    
   }
 
   return (
@@ -42,7 +54,7 @@ function ProductDetails({route}) {
           style={styles.image}>
           <View style={styles.detail}>
             <Text style={styles.title}>{productDetail.title}</Text>
-            <Icon style={styles.like} name="favorite-outline" size={30} onPress={onLike} />
+            <Icon style={styles.like} name={storage && storage.favorites.find(x=>x.id===productDetail.id) ? "favorite" : "favorite-outline"} size={30} onPress={onLike} />
           </View>
         </ImageBackground>
         <Text style={styles.price}>

@@ -1,29 +1,21 @@
 import React,{useState,useEffect} from 'react';
+import {useStorage} from './../../hooks/useStorage';
 import {SafeAreaView, View, FlatList} from 'react-native';
 import {ProductItem} from '../../components';
 import styles from './LikedProducts.styles';
 
 function LikedProducts() {
 
-  const [favList,setFavList] = useState([]);
+  const [storeValue, setStore, removeStore] = useStorage('@storage');
 
   useEffect(() => {
 
-    setFavList(getData());
+    console.log(storeValue);
+    if(storeValue && storeValue.favorites.length>0)
+      setFavList(storeValue.favorites);
   
-  }, []);
+  }, [storeValue.favorites]);
 
-  const getData = async () => {
-    try {
-
-      const jsonStorage = await AsyncStorage.getItem('@storage');
-      console.log(JSON.parse(jsonStorage));
-      return jsonStorage != null ? JSON.parse(jsonStorage).favorites : [];
-      
-    } catch(e) {
-      // error reading value
-    }
-  }
     
   const renderProduct = ({item}) => (
     <ProductItem

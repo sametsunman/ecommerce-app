@@ -1,6 +1,8 @@
 
 function reducer(state, action) {
   switch (action.type) {    
+    case 'SET_STATE_FROM_STORAGE':
+      return action.payload ? action.payload : state;
     case 'ADD_TO_FAVORITES':
       const index = state.favorites.findIndex((fav) => fav.id === action.payload.id);
       return index === -1
@@ -8,7 +10,7 @@ function reducer(state, action) {
         : state;
 
       case 'REMOVE_FROM_FAVORITES':
-          return state.filter((fav) => fav.id !== action.payload.id);
+          return {...state, favorites: state.favorites.filter((fav) => fav.id !== action.payload.id)}
     
 
     default:

@@ -7,8 +7,8 @@ import { ProductDetails } from './screens/ProductDetails';
 import { LikedProducts } from './screens/LikedProducts';
 import { BasketList } from './screens/BasketList';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useSelector} from 'react-redux';
+import {useStorage} from './hooks/useStorage';
+import {useDispatch, useSelector} from 'react-redux';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,24 +26,26 @@ function ProductStack() {
 
 function Route() {
 
+
+const dispatch = useDispatch();
+const [storeValue, setStore, removeStore] = useStorage('@storage');
+
+useEffect(() => {
+
+  console.log(storeValue);
+  dispatch({type: 'SET_STATE_FROM_STORAGE', payload: storeValue});
+
+}, []);
+
 const storage = useSelector((state) => state);
 
 useEffect(() => {
 
-  setStorage();
+  console.log(storage);
+  setStore(storage);
 
 }, [storage]);
 
-const setStorage = async () => {
-
-  try {
-    const jsonStorage = JSON.stringify(storage)
-    await AsyncStorage.setItem('@storage', jsonStorage)
-  }
-  catch (e) {
-    // saving error
-  }
-}
 
 
   return (
