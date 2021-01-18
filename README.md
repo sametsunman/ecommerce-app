@@ -1,5 +1,16 @@
 # Alışveriş Uygulaması
 
+### Ekran Görüntüleri
+
+<div align="center">
+  <img width="400" src="/screenshots/1.png"><br />
+  <em>Ürünler Sayfası<em><br /><br />
+  <img width="400" src="/screenshots/2.png"><br />
+  <em>Ürün Detayı Sayfası<em><br /><br />
+  <img width="400" src="/screenshots/3.png"><br />
+  <em>Sepet Sayfası<em>
+</div>
+
 Kullanıcıların ürün satın alabildiği bir uygulamaya ihtiyaç bulunmaktadır.<br />
 
 Kullanıcılar uygulamanın açılış sayfasında sistemde bulunan tüm ürünleri toplu olarak görebilecek, isterse kategorilere göre ürün filtreleme işlemi yapabilecektir. Ürünler kategoriye göre dinamik olarak filtrelenecek ve ana sayfadaki listede güncellencektir. Kategoriler sistemden direkt olarak alınabilir.
