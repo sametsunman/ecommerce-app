@@ -17,13 +17,13 @@ function ProductList(props) {
       setProductList(data);
     }, [data]);
 
-    // if (loading) {
-    //   return <Loading />;
-    // }
+    if (loading) {
+      return <Loading />;
+    }
   
-    // if (error) {
-    //   return <Error />;
-    // }
+    if (error) {
+      return <Error />;
+    }
 
     function searchProduct(searchedField) {
 

@@ -1,4 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet,Dimensions} from 'react-native';
+
+const deviceSize = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -7,6 +9,11 @@ const styles = StyleSheet.create({
   item: {
     flex: 0.5,
     width: '50%'
+  },
+  empty:{
+    fontSize: 20,
+    alignSelf:'center',
+    marginTop:deviceSize.height/2.5
   }
 });
 

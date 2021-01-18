@@ -12,19 +12,28 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 10,
     width:'95%',
-    flexDirection: 'row',
-  },
+    flexDirection: 'row'
+    },
   image: {
-    flex:1
+    flex:1,
+    height: 50
   },
-  details: {
-    flex:4
+  nameView: {
+    flex:4,
+    alignSelf:'center',
+    padding: 10
+  },
+  priceView: {
+    flex:1,
+    alignSelf:'center'
   },
   name: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 15,
   },
-  title: {},
+  price: {
+    fontSize: 15
+  },
   footer: {
     padding: 5,
     borderBottomLeftRadius: 10,
@@ -44,6 +53,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+  remove:{
+    borderWidth: 1,
+    borderRadius:50,
+    margin:5,
+    padding:1,
+    height:15,
+    alignSelf:'center'
+  }
 });
 
 

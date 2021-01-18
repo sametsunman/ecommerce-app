@@ -17,6 +17,8 @@ function reducer(state, action) {
         : state;
     case 'REMOVE_FROM_BASKET':
       return { ...state, orderBasket: state.orderBasket.filter((order) => order.id !== action.payload.id) }
+    case 'ORDER_NOW':
+        return { ...state, orderBasket: [], orderHistory: action.payload }
 
 
 

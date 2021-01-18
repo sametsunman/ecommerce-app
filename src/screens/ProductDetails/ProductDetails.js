@@ -24,13 +24,13 @@ function ProductDetails({route}) {
 
   
 
-    // if (loading) {
-    //   return <Loading />;
-    // }
+    if (loading) {
+      return <Loading />;
+    }
   
-    // if (error) {
-    //   return <Error />;
-    // }
+    if (error) {
+      return <Error />;
+    }
 
   const onLike = () => {
     if(favorites.find(x=>x.id===productDetail.id))

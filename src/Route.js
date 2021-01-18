@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 
 function ProductStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator >
       <Stack.Screen name="ProductList" component={ProductList} />
       <Stack.Screen name="ProductDetails" component={ProductDetails} />
     </Stack.Navigator>
@@ -32,8 +32,6 @@ const [storeValue, setStore, removeStore] = useStorage('@storage');
 
 useEffect(() => {
 
-  console.log("Storagedan state e");
-  console.log(storeValue);
   dispatch({type: 'SET_STATE_FROM_STORAGE', payload: storeValue});
 
 }, []);
@@ -42,8 +40,6 @@ const state = useSelector((state) => state);
 
 useEffect(() => {
 
-  console.log("Stateden storage'a");
-  console.log(state);
   setStore(state);
 
 }, [state]);
