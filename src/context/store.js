@@ -1,5 +1,7 @@
 const initialState = {
-  favorites: []
+  favorites: [],
+  orderHistory: [],
+  orderBasket: []
 };
 
 export default initialState;

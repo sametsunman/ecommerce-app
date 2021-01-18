@@ -14,7 +14,7 @@ function ProductDetails({route}) {
 
   const dispatch = useDispatch();
 
-  const storage = useSelector((state) => state);
+  const {favorites,orderBasket} = useSelector((state) => state);
 
   const [productDetail, setProductDetail] = useState(null);
 
@@ -33,7 +33,7 @@ function ProductDetails({route}) {
     // }
 
   const onLike = () => {
-    if(storage && storage.favorites.find(x=>x.id===productDetail.id))
+    if(favorites.find(x=>x.id===productDetail.id))
     {
       dispatch({type: 'REMOVE_FROM_FAVORITES', payload: productDetail});
       alert("Removed from favorites!");
@@ -45,6 +45,19 @@ function ProductDetails({route}) {
     
   }
 
+  const onBasket = () => {
+    if(orderBasket.find(x=>x.id===productDetail.id))
+    {
+      dispatch({type: 'REMOVE_FROM_BASKET', payload: productDetail});
+      alert("Removed from basket!");
+    }
+    else{
+      dispatch({type: 'ADD_TO_BASKET', payload: productDetail});
+      alert("Added to basket!");
+    }
+    
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       {productDetail && <View style={styles.container}>
@@ -52,17 +65,20 @@ function ProductDetails({route}) {
           resizeMode="contain"
           source={{uri: productDetail.image}}
           style={styles.image}>
-          <View style={styles.detail}>
-            <Text style={styles.title}>{productDetail.title}</Text>
-            <Icon style={styles.like} name={storage && storage.favorites.find(x=>x.id===productDetail.id) ? "favorite" : "favorite-outline"} size={30} onPress={onLike} />
-          </View>
         </ImageBackground>
+        <View style={styles.detail}>
+            <Text style={styles.title}>{productDetail.title}</Text>
+            <Icon style={styles.like} name={favorites.find(x=>x.id===productDetail.id) ? "favorite" : "favorite-outline"} size={30} onPress={onLike} />
+          </View>
         <Text style={styles.price}>
-        {productDetail.price}
+        ${productDetail.price}
         </Text>
         <Text  style={styles.instructions}>
           {productDetail.description}
         </Text>
+        <View style={styles.basket}>
+        <Icon name={orderBasket.find(x=>x.id===productDetail.id) ?"check":"shopping-cart"} size={30} onPress={onBasket} />
+        </View>
       </View>}
     </SafeAreaView>
   );

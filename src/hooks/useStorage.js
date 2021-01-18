@@ -11,6 +11,7 @@ export function useStorage(key) {
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e) {
       // error reading value
+    
     }
   };
 

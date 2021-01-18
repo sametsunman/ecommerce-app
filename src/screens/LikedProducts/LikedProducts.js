@@ -1,20 +1,18 @@
 import React,{useState,useEffect} from 'react';
-import {useStorage} from './../../hooks/useStorage';
+import {useSelector} from 'react-redux';
 import {SafeAreaView, View, FlatList} from 'react-native';
 import {ProductItem} from '../../components';
 import styles from './LikedProducts.styles';
 
 function LikedProducts() {
 
-  const [storeValue, setStore, removeStore] = useStorage('@storage');
+  const [favList,setFavList] = useState([]);
+
+  const {favorites} = useSelector((state) => state);
 
   useEffect(() => {
-
-    console.log(storeValue);
-    if(storeValue && storeValue.favorites.length>0)
-      setFavList(storeValue.favorites);
-  
-  }, [storeValue.favorites]);
+      setFavList(favorites);
+  }, [favorites]);
 
     
   const renderProduct = ({item}) => (

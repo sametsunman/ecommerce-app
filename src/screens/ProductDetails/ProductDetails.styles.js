@@ -35,8 +35,14 @@ const styles = StyleSheet.create({
       padding: 5,
       backgroundColor: '#cececeaa'
     },
-    instructions: {
-      margin:5
+    basket:{
+      position:"absolute",
+      right:20,
+      bottom:20,
+      borderWidth: 2,
+      borderColor: "#000000",
+      borderRadius: 50,
+      padding: 10
     }
   });
 

@@ -32,19 +32,21 @@ const [storeValue, setStore, removeStore] = useStorage('@storage');
 
 useEffect(() => {
 
+  console.log("Storagedan state e");
   console.log(storeValue);
   dispatch({type: 'SET_STATE_FROM_STORAGE', payload: storeValue});
 
 }, []);
 
-const storage = useSelector((state) => state);
+const state = useSelector((state) => state);
 
 useEffect(() => {
 
-  console.log(storage);
-  setStore(storage);
+  console.log("Stateden storage'a");
+  console.log(state);
+  setStore(state);
 
-}, [storage]);
+}, [state]);
 
 
 
